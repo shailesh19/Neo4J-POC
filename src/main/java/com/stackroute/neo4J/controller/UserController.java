@@ -35,9 +35,9 @@ public class UserController {
     }
 
     @DeleteMapping(value = "user")
-    public ResponseEntity<?> deleteUserById(@RequestParam int uId) {
+    public ResponseEntity<?> deleteUserById(@RequestBody User user) {
 
-        User deletedUser=userService.deleteUserById(uId);
+        User deletedUser=userService.deleteUser(user);
         return new ResponseEntity<>(deletedUser,HttpStatus.MOVED_PERMANENTLY);
     }
 

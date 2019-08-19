@@ -40,9 +40,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User deleteUserById(int uId) {
-        Optional<User> optionalUser = userRepository.findById(uId);
-        userRepository.deleteById(uId);
+    public User deleteUser(User user) {
+        Optional<User> optionalUser = userRepository.findById(user.getUId());
+        userRepository.deleteById(user.getUId());
         return optionalUser.get();
     }
 }
