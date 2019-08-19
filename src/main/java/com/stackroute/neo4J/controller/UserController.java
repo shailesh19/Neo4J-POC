@@ -1,5 +1,6 @@
 package com.stackroute.neo4J.controller;
 
+import com.stackroute.neo4J.domain.Movie;
 import com.stackroute.neo4J.domain.User;
 import com.stackroute.neo4J.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @DeleteMapping(value = "user")
-    public ResponseEntity<?> deleteUserById(@RequestBody User user) {
+    public ResponseEntity<?> deleteUser(@RequestBody User user) {
 
         User deletedUser=userService.deleteUser(user);
         return new ResponseEntity<>(deletedUser,HttpStatus.MOVED_PERMANENTLY);
@@ -53,6 +54,27 @@ public class UserController {
 
         User updatedUser=userService.updateUser(userToUpdate);
         return new ResponseEntity<>(updatedUser,HttpStatus.OK);
+    }
+
+    @PostMapping(value = "movie")
+    public ResponseEntity<?> saveMovie(@RequestBody Movie movie) {
+        System.out.println(movie);
+        Movie savedMovie=userService.saveMovie(movie);
+        return new ResponseEntity<>(savedMovie, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "movie")
+    public ResponseEntity<?> deleteMovie(@RequestBody Movie movie) {
+
+        Movie deletedMovie=userService.deleteMovie(movie);
+        return new ResponseEntity<>(deletedMovie,HttpStatus.MOVED_PERMANENTLY);
+    }
+
+    @GetMapping(value = "movie/{id}")
+    public ResponseEntity<?> getMovieById(@PathVariable int mId)
+    {
+        Movie foundMovieById = userService.getMovieById(mId);
+        return new ResponseEntity<>(foundMovieById, HttpStatus.FOUND);
     }
 
 }

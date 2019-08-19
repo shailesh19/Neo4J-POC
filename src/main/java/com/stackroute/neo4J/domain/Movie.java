@@ -15,7 +15,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class Movie {
 
     @Id
-    private Long mId;
+    private int mId;
     private String title;
     private String director;
 }
